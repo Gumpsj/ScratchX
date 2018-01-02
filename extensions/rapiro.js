@@ -38,7 +38,7 @@ Send Raipro Commands via wf8266r
 
     ext.toRaipro = function (cmd, callback) {
         url = 'http://192.168.2.105/serial/write?text='+cmd;
-        http('POST',url);
+        $.http('POST',url);
     };
 
 
