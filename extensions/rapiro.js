@@ -43,7 +43,7 @@ Send Raipro Commands via wf8266r
 
 
     // Block and block menu descriptions
-    var descriptor = {
+    var descriptor = { 
         blocks: [
             ['w', 'To Raipro %s', 'toRaipro','%23M0'],
             ['w', 'HTTP %m.restType 到 %s', 'http', 'POST', 'http://192.168.2.105/serial/write?text=%23M0'],
