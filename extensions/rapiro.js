@@ -65,7 +65,7 @@ Send Raipro Commands via wf8266r
         blocks: [  
             [' ', 'Send M1', 'M1'],
             [' ', 'Send M2', 'M2'],
-            [' ', '#%.rapiroCMD to Raipro', 'toRapiro', 'M0'],
+            [' ', '#%m.rapiroCMD to Raipro', 'toRapiro', 'M0'],
             ['w', 'HTTP %m.restType 到 %s', 'http', 'POST', 'http://192.168.2.105/serial/write?text=%23M0'],
             ['w', 'HTTP %m.restType 從 %s', 'http', 'GET', 'http://192.168.2.105/serial/write?text=%23M0'],
         ],
