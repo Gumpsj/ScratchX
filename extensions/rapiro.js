@@ -36,45 +36,16 @@ Send Raipro Commands via wf8266r
         });
     };
 
-    ext.toRapiro = function (cmd, callback) {
-        var uri = 'http://192.168.2.105/serial/write?text='+cmd;
-        $.ajax({
-            url: uri,
-            type: 'POST',
-            success: function (data) {
-                callback(data);
-                restGet = data;
-            },
-            error: function (e) {
-                callback(e);
-                restGet = JSON.stringify(e);
-            }
-        });
-    };
-
-
-    ext.M1 = function (callback) {
-        var uri = 'http://192.168.2.105/serial/write?text=%23M1';
-        $.ajax({
-            url: uri,
-            type: 'POST',
-            success: function (data) {
-                callback(data);
-                restGet = data;
-            },
-            error: function (e) {
-                callback(e);
-                restGet = JSON.stringify(e);
-            }
-        });
+    ext.M1 = function () {
+        toRapiro('M1');
     };    
     
     ext.M2 = function () {
-        sendM2();
+        toRapiro('M2');
     };    
     
-    function sendM2 () {
-        var uri = 'http://192.168.2.105/serial/write?text=%23M2';
+    function toRapiro (cmd) {
+        var uri = 'http://192.168.2.105/serial/write?text=%23'+cmd;
         $.ajax({
             url: uri,
             type: 'POST',
@@ -90,8 +61,7 @@ Send Raipro Commands via wf8266r
     // Block and block menu descriptions
     var descriptor = { 
         blocks: [  
-            ['w', 'To Raipro %s', 'toRapiro','%23M0'],
-            ['w', 'Send M1', 'M1'],
+            [' ', 'Send M1', 'M1'],
             [' ', 'Send M2', 'M2'],
             ['w', 'HTTP %m.restType 到 %s', 'http', 'POST', 'http://192.168.2.105/serial/write?text=%23M0'],
             ['w', 'HTTP %m.restType 從 %s', 'http', 'GET', 'http://192.168.2.105/serial/write?text=%23M0'],
