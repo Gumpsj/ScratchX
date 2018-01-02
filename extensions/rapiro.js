@@ -40,7 +40,7 @@ Send Raipro Commands via wf8266r
     // Block and block menu descriptions
     var descriptor = {
         blocks: [
-            ['w', '#M0', 'http', 'POST', 'http://192.168.2.105/serial/write?text=%23M0'],
+            ['w', '#M0 %s', 'http', 'POST', 'http://192.168.2.105/serial/write?text=%23M0'],
             ['w', '#M1', 'http', 'POST', 'http://192.168.2.105/serial/write?text=%23M0'],
             ['w', '#M2', 'http', 'POST', 'http://192.168.2.105/serial/write?text=%23M0'],
             ['w', 'HTTP %m.restType 到 %s', 'http', 'POST', 'http://192.168.2.105/serial/write?text=%23M0'],
