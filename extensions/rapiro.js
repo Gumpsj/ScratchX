@@ -74,7 +74,7 @@ Send Raipro Commands via wf8266r
     var descriptor = { 
         blocks: [
             ['w', 'To Raipro %s', 'toRapiro','%23M0'],
-            ['w', 'Raipro(M1)', '_M1'],
+            ['w', 'Rapiro(%s)', '_M1','M1'],
             ['w', 'HTTP %m.restType 到 %s', 'http', 'POST', 'http://192.168.2.105/serial/write?text=%23M0'],
             ['w', 'HTTP %m.restType 從 %s', 'http', 'GET', 'http://192.168.2.105/serial/write?text=%23M0'],
         ],
