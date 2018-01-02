@@ -87,10 +87,7 @@ Send Raipro Commands via wf8266r
             }
         });
     };
-
-
-
-
+ 
     // Block and block menu descriptions
     var descriptor = { 
         blocks: [  
