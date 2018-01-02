@@ -5,9 +5,7 @@ Send Raipro Commands via wf8266r
 */
 
 (function (ext) {
-    var ip = "";
-    var isConnected = false;
-    var connection;
+
     var restGet = "";
 
     // Cleanup function when the extension is unloaded
@@ -36,15 +34,19 @@ Send Raipro Commands via wf8266r
         });
     };
 
+    ext.toRapiro = function(cmd) {
+        _toRapiro(cmd);
+    }
+
     ext.M1 = function () {
-        toRapiro('M1');
+        _toRapiro('M1');
     };    
     
     ext.M2 = function () {
-        toRapiro('M2');
+        _toRapiro('M2');
     };    
     
-    function toRapiro (cmd) {
+    function _toRapiro (cmd) {
         var uri = 'http://192.168.2.105/serial/write?text=%23'+cmd;
         $.ajax({
             url: uri,
@@ -63,11 +65,13 @@ Send Raipro Commands via wf8266r
         blocks: [  
             [' ', 'Send M1', 'M1'],
             [' ', 'Send M2', 'M2'],
+            [' ', '#%.rapiroCMD to Raipro', 'toRapiro', 'M0']
             ['w', 'HTTP %m.restType 到 %s', 'http', 'POST', 'http://192.168.2.105/serial/write?text=%23M0'],
             ['w', 'HTTP %m.restType 從 %s', 'http', 'GET', 'http://192.168.2.105/serial/write?text=%23M0'],
         ],
         menus: {
             'restType': ['GET', 'POST'],
+            'rapiroCMD': ['M0','M1','M2','M3','M4','M5','M6','M7','M8','M9'],
         },
         url: 'http://jy3736.github.io/ScratchX/extensions/'
     };
