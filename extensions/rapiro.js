@@ -36,9 +36,20 @@ Send Raipro Commands via wf8266r
         });
     };
 
-    ext.toRapiro = function (cmd) {
-        var url = 'http://192.168.2.105/serial/write?text=%23M0';
-        ext.http('POST',url);
+    ext.toRapiro = function (cmd, callback) {
+        var uri = 'http://192.168.2.105/serial/write?text='+cmd;
+        $.ajax({
+            url: uri,
+            type: 'POST',
+            success: function (data) {
+                callback(data);
+                restGet = data;
+            },
+            error: function (e) {
+                callback(e);
+                restGet = JSON.stringify(e);
+            }
+        });
     };
 
 
