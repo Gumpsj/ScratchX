@@ -53,7 +53,7 @@ Send Raipro Commands via wf8266r
     };
 
 
-    ext._M1 = function (callback) {
+    ext.M1 = function (callback) {
         var uri = 'http://192.168.2.105/serial/write?text=%23M0';
         $.ajax({
             url: uri,
@@ -74,7 +74,7 @@ Send Raipro Commands via wf8266r
     var descriptor = { 
         blocks: [
             ['w', 'To Raipro %s', 'toRapiro','%23M0'],
-            ['w', 'Rapiro(%s)', '_M1','M1'],
+            ['w', 'Rapiro(%s)', 'M1'],
             ['w', 'HTTP %m.restType 到 %s', 'http', 'POST', 'http://192.168.2.105/serial/write?text=%23M0'],
             ['w', 'HTTP %m.restType 從 %s', 'http', 'GET', 'http://192.168.2.105/serial/write?text=%23M0'],
         ],
