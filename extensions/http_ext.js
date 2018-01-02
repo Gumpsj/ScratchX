@@ -1,5 +1,5 @@
 
-(function (ext) {
+new (function (ext) {
     var ip = "";
     var isConnected = false;
     var connection;
