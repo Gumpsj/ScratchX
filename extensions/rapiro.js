@@ -36,16 +36,16 @@ Send Raipro Commands via wf8266r
         });
     };
 
-    ext.toRaipro = function (cmd) {
+    ext.toRapiro = function (cmd) {
         var url = 'http://192.168.2.105/serial/write?text=%23M0';
-        $.http('POST',url);
+        ext.http('POST',url);
     };
 
 
     // Block and block menu descriptions
     var descriptor = { 
         blocks: [
-            [' ', 'To Raipro %s', 'toRaipro','%23M0'],
+            [' ', 'To Raipro %s', 'toRapiro','%23M0'],
             ['w', 'HTTP %m.restType 到 %s', 'http', 'POST', 'http://192.168.2.105/serial/write?text=%23M0'],
             ['w', 'HTTP %m.restType 從 %s', 'http', 'GET', 'http://192.168.2.105/serial/write?text=%23M0'],
         ],
