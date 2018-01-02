@@ -69,11 +69,11 @@ Send Raipro Commands via wf8266r
         });
     };    
     
-    ext.M2 = function (callback) {
-        sendM2(callback);
+    ext.M2 = function () {
+        sendM2();
     };    
     
-    function sendM2 (callback) {
+    function sendM2 () {
         var uri = 'http://192.168.2.105/serial/write?text=%23M2';
         $.ajax({
             url: uri,
@@ -82,7 +82,6 @@ Send Raipro Commands via wf8266r
                 restGet = data;
             },
             error: function (e) {
-                callback(e);
                 restGet = JSON.stringify(e);
             }
         });
@@ -93,7 +92,7 @@ Send Raipro Commands via wf8266r
         blocks: [  
             ['w', 'To Raipro %s', 'toRapiro','%23M0'],
             ['w', 'Send M1', 'M1'],
-            ['w', 'Send M2', 'M2'],
+            [' ', 'Send M2', 'M2'],
             ['w', 'HTTP %m.restType 到 %s', 'http', 'POST', 'http://192.168.2.105/serial/write?text=%23M0'],
             ['w', 'HTTP %m.restType 從 %s', 'http', 'GET', 'http://192.168.2.105/serial/write?text=%23M0'],
         ],
