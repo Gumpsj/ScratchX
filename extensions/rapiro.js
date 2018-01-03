@@ -36,7 +36,9 @@ Send Raipro Commands via wf8266r
 
     ext.toRapiro = function(cmd,callback) {
         _toRapiro(cmd);
-        callback();
+        window.setTimeout(function() {
+            callback();
+        }, 100);
     }
 
     ext.M1 = function () {
