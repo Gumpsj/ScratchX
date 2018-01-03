@@ -14,8 +14,8 @@ const http = require('http').Server(app);
 const io = require('socket.io')(http);
 const port = process.env.PORT || 3000;
 
-const serialport = require('serialport');
-const SerialPort = serialport.SerialPort;
+const SerialPort = require('serialport');
+//const SerialPort = serialport.SerialPort;
 
 const serial = new SerialPort('/dev/cu.usbmodem1411', {
   baudRate: 9600,
