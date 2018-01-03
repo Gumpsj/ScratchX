@@ -1,7 +1,5 @@
 /*
-
 Send Raipro Commands via wf8266r
-
 */
 
 (function (ext) {
@@ -36,6 +34,13 @@ Send Raipro Commands via wf8266r
     };
 
     ext.toRapiro = function(cmd,callback) {
+        _toRapiro('%23'+cmd);
+        window.setTimeout(function() {
+            callback();
+        }, 100);
+    }
+
+    ext.str2Rapiro = function(cmd,callback) {
         _toRapiro(cmd);
         window.setTimeout(function() {
             callback();
@@ -47,7 +52,7 @@ Send Raipro Commands via wf8266r
     }
 
     function _toRapiro (cmd) {
-        var uri = 'http://'+ip+'/serial/write?text=%23'+cmd;
+        var uri = 'http://'+ip+'/serial/write?text='+cmd;
         $.ajax({
             url: uri,
             type: 'POST',
@@ -65,6 +70,7 @@ Send Raipro Commands via wf8266r
         blocks: [
             [' ', 'Rapiro IP %s', 'setIP', '192.168.4.1'],  
             ['w', '#%m.rapiroCMD to Raipro', 'toRapiro', 'M0'],
+            ['w', 'Send %s to Raipro', 'str2Rapiro', 'M0'],
         ],
         menus: {
             'restType': ['GET', 'POST'],
