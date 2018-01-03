@@ -7,6 +7,7 @@ Send Raipro Commands via wf8266r
 (function (ext) {
 
     var restGet = "";
+    var ip="192.168.xxx.xxx";
 
     // Cleanup function when the extension is unloaded
     ext._shutdown = function () {
@@ -49,8 +50,12 @@ Send Raipro Commands via wf8266r
         _toRapiro('M2');
     };    
     
+    ext.setIP = function(_ip) {
+        ip=_ip;
+    }
+
     function _toRapiro (cmd) {
-        var uri = 'http://192.168.2.105/serial/write?text=%23'+cmd;
+        var uri = 'http://'+ip+'/serial/write?text=%23'+cmd;
         $.ajax({
             url: uri,
             type: 'POST',
@@ -65,12 +70,9 @@ Send Raipro Commands via wf8266r
  
     // Block and block menu descriptions
     var descriptor = { 
-        blocks: [  
-            [' ', 'Send M1', 'M1'],
-            [' ', 'Send M2', 'M2'],
+        blocks: [
+            [' ', 'Rapiro IP %s', 'setIP', '192.168.xxx.xxx'],  
             ['w', '#%m.rapiroCMD to Raipro', 'toRapiro', 'M0'],
-            ['w', 'HTTP %m.restType 到 %s', 'http', 'POST', 'http://192.168.2.105/serial/write?text=%23M0'],
-            ['w', 'HTTP %m.restType 從 %s', 'http', 'GET', 'http://192.168.2.105/serial/write?text=%23M0'],
         ],
         menus: {
             'restType': ['GET', 'POST'],
