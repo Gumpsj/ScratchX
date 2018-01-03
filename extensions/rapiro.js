@@ -7,7 +7,7 @@ Send Raipro Commands via wf8266r
 (function (ext) {
 
     var restGet = "";
-    var ip="192.168.xxx.xxx";
+    var ip="";
 
     // Cleanup function when the extension is unloaded
     ext._shutdown = function () {
@@ -42,14 +42,6 @@ Send Raipro Commands via wf8266r
         }, 100);
     }
 
-    ext.M1 = function () {
-        _toRapiro('M1');
-    };    
-    
-    ext.M2 = function () {
-        _toRapiro('M2');
-    };    
-    
     ext.setIP = function(_ip) {
         ip=_ip;
     }
@@ -71,7 +63,7 @@ Send Raipro Commands via wf8266r
     // Block and block menu descriptions
     var descriptor = { 
         blocks: [
-            [' ', 'Rapiro IP %s', 'setIP', '192.168.xxx.xxx'],  
+            [' ', 'Rapiro IP %s', 'setIP', '192.168.4.1'],  
             ['w', '#%m.rapiroCMD to Raipro', 'toRapiro', 'M0'],
         ],
         menus: {
