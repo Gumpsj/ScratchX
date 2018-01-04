@@ -66,9 +66,22 @@ Send Raipro Commands via wf8266r
         });
     }
  
+    function _toPyServer (cmd) {
+        var uri = 'http://127.0.0.1/'+cmd;
+        $.ajax({
+            url: uri,
+            type: 'POST',
+            success: function (data) {
+                restGet = data;
+            },
+            error: function (e) {
+                restGet = JSON.stringify(e);
+            }
+        });
+    }
+ 
     ext.getArduino = function() {
-         port = 'COM9';
-         return port;
+         return restGet;
     }
 
     // Block and block menu descriptions
