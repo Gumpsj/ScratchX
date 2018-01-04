@@ -10,13 +10,13 @@ Send Raipro Commands via wf8266r
     // Cleanup function when the extension is unloaded
     ext._shutdown = function () {
 
-    };
+    }
 
     // Status reporting code
     // Use this to report missing hardware, plugin or unsupported browser
     ext._getStatus = function () {
         return {status: 2, msg: 'Ready'};
-    };
+    }
 
     ext.http = function (_type, uri, callback) {
         $.ajax({
@@ -31,7 +31,7 @@ Send Raipro Commands via wf8266r
                 restGet = JSON.stringify(e);
             }
         });
-    };
+    }
 
     ext.toRapiro = function(cmd,callback) {
         _toRapiro('%23'+cmd);
@@ -63,16 +63,16 @@ Send Raipro Commands via wf8266r
                 restGet = JSON.stringify(e);
             }
         });
-    };
+    }
  
-    ext.get1stArduino = function() {
-        return 'COM9';
+    ext.get1stArduino = function(c) {
+        return c;
     }
 
     // Block and block menu descriptions
     var descriptor = { 
         blocks: [
-            ['r', 'Arduino device', 'get1stArduino'],
+            ['r', 'Arduino device', 'get1stArduino','COM9'],
             [' ', 'Rapiro IP %s', 'setIP', '192.168.4.1'],  
             ['w', '#%m.rapiroCMD to Raipro', 'toRapiro', 'M0'],
             ['w', 'Send %s to Raipro', 'str2Rapiro', 'M0'],
