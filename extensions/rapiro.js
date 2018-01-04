@@ -74,7 +74,7 @@ Send Raipro Commands via wf8266r
     // Block and block menu descriptions
     var descriptor = { 
         blocks: [
-            ['r', 'Arduino device', 'get1stArduino','COM9'],
+            ['r', 'Arduino device', 'get1stArduino'],
             [' ', 'Rapiro IP %s', 'setIP', '192.168.4.1'],  
             ['w', '#%m.rapiroCMD to Raipro', 'toRapiro', 'M0'],
             ['w', 'Send %s to Raipro', 'str2Rapiro', 'M0'],
