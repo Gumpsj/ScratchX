@@ -67,7 +67,7 @@ Send Raipro Commands via wf8266r
     }
  
     function _toPyServer (cmd) {
-        var uri = 'http://127.0.0.1'+cmd;
+        var uri = 'http://127.0.0.1:5000'+cmd;
         $.ajax({
             url: uri,
             type: 'POST',
