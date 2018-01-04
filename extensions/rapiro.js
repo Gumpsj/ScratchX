@@ -6,6 +6,7 @@ Send Raipro Commands via wf8266r
 
     var restGet = "";
     var ip="";
+    var port="";
 
     // Cleanup function when the extension is unloaded
     ext._shutdown = function () {
@@ -65,15 +66,15 @@ Send Raipro Commands via wf8266r
         });
     }
  
-    ext.get1stArduino = function(c) {
-         //
+    ext.getArduino = function(_port) {
+         port=_port;
     }
 
     // Block and block menu descriptions
     var descriptor = { 
         blocks: [
             // ['r', 'Arduino device', 'get1stArduino','COM9'],
-            [' ', 'Arduino device %s', 'get1stArduino','COM9'],
+            [' ', 'Arduino device %s', 'getArduino','COM9'],
             [' ', 'Rapiro IP %s', 'setIP', '192.168.4.1'],  
             ['w', '#%m.rapiroCMD to Raipro', 'toRapiro', 'M0'],
             ['w', 'Send %s to Raipro', 'str2Rapiro', 'M0'],
