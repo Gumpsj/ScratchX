@@ -56,8 +56,7 @@ Send Raipro Commands via wf8266r
         var uri = 'http://'+ip+'/serial/write?text='+cmd;
         $.ajax({
             url: uri,
-            type: 'GET',
-            async: false,  
+            type: 'POST',
             success: function (data) {
                 restRet = data;
             },
@@ -71,8 +70,7 @@ Send Raipro Commands via wf8266r
         var uri = 'http://127.0.0.1:5000'+cmd;
         $.ajax({
             url: uri, 
-            type: 'GET',
-            async: false,  
+            type: 'POST',
             success: function (data) {
                 restRet = data;
             },
