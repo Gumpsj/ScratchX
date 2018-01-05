@@ -52,8 +52,10 @@ Send Raipro Commands via wf8266r
         ip=_ip;
     }
 
-    function _toRapiro (cmd) {
-        var uri = 'http://'+ip+'/serial/write?text='+cmd;
+    function _toRapiro (msg) {
+        var seriver = 'http://'+ip;
+        var cmd = '/serial/write?text='+msg;
+        var uri = server+cmd;
         $.ajax({
             url: uri,
             type: 'GET',
@@ -66,8 +68,9 @@ Send Raipro Commands via wf8266r
         });
     }
  
-    function _toPyServer (cmd) {
-        var uri = 'http://127.0.0.1:5000'+cmd;
+    function _toPyServer (msg) {
+        var server = 'http://127.0.0.1:5000';
+        var uri = server+msg;
         $.ajax({
             url: uri, 
             type: 'GET',
@@ -77,7 +80,6 @@ Send Raipro Commands via wf8266r
             },
             error: function (e) {
                 restRet = JSON.stringify(e);
-                console.log(restRet);
                 alert("Error : "+restRet);
             }
         });

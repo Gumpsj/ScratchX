@@ -28,10 +28,13 @@ def hello():
 #----------------------------------------------------
 @app.route("/arduino", methods = ['GET'])
 def _get1stArduino():
-  data = {}
-  port=get1stArduino()
-  return json.dumps({'success':True, 'port':port}), 200, {'ContentType':'application/json'} 
-
+  #port=get1stArduino();
+  data={'port':'COM9'};
+  response = app.response_class(
+        response=json.dumps(data),
+        status=200,
+        mimetype='application/json');
+  return response
 #----------------------------------------------------
 @app.route("/cmd/M/<int:act>", methods = ['GET'])
 def _cmdM(act):
