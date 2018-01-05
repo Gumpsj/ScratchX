@@ -36,12 +36,12 @@ Send Raipro Commands via wf8266r
 
     ext.sendRapiro_wifi = function(cmd) {
         _toRapiro_wifi(cmd);
-        _delayMs(100);
+        _delayMs(1000);
     }
 
     ext.str2Rapiro_wifi = function(cmd) {
         _toRapiro_wifi(cmd);
-        _delayMs(100);
+        _delayMs(1000);
     }
 
     ext.setIP = function(_ip) {
@@ -88,17 +88,17 @@ Send Raipro Commands via wf8266r
 
     ext.disconnectRapiro_serial = function() {
         _serialBridge("/rapiro/disconnect");
-        _delayMs(100);
+        _delayMs(1000);
     }
 
     ext.sendRapiro_serial = function(msg) {
         _serialBridge("/rapiro/send/"+msg);
-        _delayMs(100);
+        _delayMs(1000);
     }
 
     ext.str2Rapiro_serial = function(msg) {
         _serialBridge("/rapiro/send/"+msg);
-        _delayMs(100);
+        _delayMs(1000);
     }
 
     _delayMs = function(t) {
