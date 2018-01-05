@@ -102,7 +102,7 @@ Send Raipro Commands via wf8266r
         blocks: [
             [' ', 'Hi! Rapiro', 'connectRapiro'],
             [' ', 'Bye~ Rapiro', 'disconnectRapiro'],
-            [' ', 'Send %s to Rapiro', 'sendRapiro', '%23M0'],  
+            [' ', 'Send %s to Rapiro', 'sendRapiro', '#M0'],  
             [' ', 'Rapiro IP %s', 'setIP', '192.168.4.1'],  
             ['w', '#%m.rapiroCMD to Raipro', 'toRapiro', 'M0'],
             ['w', 'Send %s to Raipro', 'str2Rapiro', 'M0'],
