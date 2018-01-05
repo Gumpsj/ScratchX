@@ -34,15 +34,15 @@ Send Raipro Commands via wf8266r
         });
     }
 
-    ext.toRapiro = function(cmd,callback) {
-        _toRapiro('%23'+cmd);
+    ext.sendRapiro_wifi = function(cmd,callback) {
+        _toRapiro(cmd);
         window.setTimeout(function() {
             callback();
         }, 100);
     }
 
-    ext.str2Rapiro = function(cmd,callback) {
-        _toRapiro(cmd);
+    ext.str2Rapiro_wifi = function(cmd,callback) {
+        _toRapiro_wifi(cmd);
         window.setTimeout(function() {
             callback();
         }, 100);
@@ -52,9 +52,9 @@ Send Raipro Commands via wf8266r
         ip=_ip;
     }
 
-    function _toRapiro (msg) {
+    function _toRapiro_wifi (msg) {
         var seriver = 'http://'+ip;
-        var cmd = '/serial/write?text='+msg;
+        var cmd = encodeURIComponent('/serial/write?text='+msg);
         var uri = server+cmd;
         $.ajax({
             url: uri,
@@ -85,31 +85,44 @@ Send Raipro Commands via wf8266r
         });
     }
  
-    ext.connectRapiro = function() {
+    ext.connectRapiro_serial = function() {
         _serialBridge("/rapiro/connect");
+        _delayMs(200);
     }
 
-    ext.disconnectRapiro = function() {
+    ext.disconnectRapiro_serial = function() {
         _serialBridge("/rapiro/disconnect");
+        _delayMs(100);
     }
 
-    ext.sendRapiro = function(msg) {
+    ext.sendRapiro_serial = function(msg) {
         _serialBridge("/rapiro/send/"+encodeURIComponent(msg));
+        _delayMs(200);
+    }
+
+    ext.ser2Rapiro_serial = function(msg) {
+        _serialBridge("/rapiro/send/"+encodeURIComponent(msg));
+        _delayMs(200);
+    }
+
+    _delayMs = function(t) {
+        window.setTimeout(function() {}, 100);        
     }
 
     // Block and block menu descriptions
     var descriptor = { 
         blocks: [
-            [' ', 'Hi! Rapiro', 'connectRapiro'],
-            [' ', 'Bye~ Rapiro', 'disconnectRapiro'],
-            [' ', 'Send %s to Rapiro', 'sendRapiro', '#M0'],  
+            [' ', 'Hi! Rapiro', 'connectRapiro_serial'],
+            [' ', 'Bye~ Rapiro', 'disconnectRapiro_serial'],
+            [' ', 'Serial %m.rapiroCMD to Rapiro', 'sendRapiro_serial', '#M0'],  
+            [' ', 'Serial %s to Rapiro', 'str2Rapiro_serial', '#M0'],  
             [' ', 'Rapiro IP %s', 'setIP', '192.168.4.1'],  
-            ['w', '#%m.rapiroCMD to Raipro', 'toRapiro', 'M0'],
-            ['w', 'Send %s to Raipro', 'str2Rapiro', 'M0'],
+            ['w', 'Wifi %m.rapiroCMD to Raipro', 'sendRapiro_wifi', '#M0'],
+            ['w', 'Wifi %s to Raipro', 'str2Rapiro_wifi', 'M0'],
         ],
         menus: {
             'restType': ['GET', 'POST'],
-            'rapiroCMD': ['M0','M1','M2','M3','M4','M5','M6','M7','M8','M9'],
+            'rapiroCMD': ['#M0','#M1','#M2','#M3','#M4','#M5','#M6','#M7','#M8','#M9'],
         },
         url: 'http://jy3736.github.io/ScratchX/extensions/'
     };
