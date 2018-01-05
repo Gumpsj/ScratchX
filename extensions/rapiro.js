@@ -85,6 +85,7 @@ Send Raipro Commands via wf8266r
     ext.getArduino = function() {
         _toPyServer('/arduino')
         port=restRet;
+        return port;
     }
 
     // Block and block menu descriptions
