@@ -34,20 +34,14 @@ Send Raipro Commands via wf8266r
         });
     }
 
-    _delayMs = function(t) {
-        window.setTimeout(function() {}, t);        
-    }
-
     ext.sendRapiro_wifi = function(cmd,callback) {
         _toRapiro_wifi(cmd);
-        _delayMs(100);
-        callback();
+        window.setTimeout(function() {callback();}, 200);
     }
 
     ext.str2Rapiro_wifi = function(cmd,callback) {
         _toRapiro_wifi(cmd);
-        _delayMs(100);
-        callback();
+        window.setTimeout(function() {callback();}, 200);
     }
 
     ext.setIP = function(_ip) {
@@ -91,25 +85,22 @@ Send Raipro Commands via wf8266r
  
     ext.connectRapiro_serial = function(callback) {
         _serialBridge("/rapiro/connect");
-        window.setTimeout(function() {callback();}, 4000);
+        window.setTimeout(function() {callback();}, 2000);
     }
 
     ext.disconnectRapiro_serial = function(callback) {
         _serialBridge("/rapiro/disconnect");
-        _delayMs(100);
-        callback();
+        window.setTimeout(function() {callback();}, 200);
     }
 
     ext.sendRapiro_serial = function(msg,callback) {
         _serialBridge("/rapiro/send/"+encodeURIComponent(msg));
-        _delayMs(100);
-        callback();
+        window.setTimeout(function() {callback();}, 200);
     }
 
     ext.str2Rapiro_serial = function(msg,callback) {
         _serialBridge("/rapiro/send/"+encodeURIComponent(msg));
-        _delayMs(100);
-        callback();
+        window.setTimeout(function() {callback();}, 200);
     }
 
     // Block and block menu descriptions
