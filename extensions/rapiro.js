@@ -94,7 +94,7 @@ Send Raipro Commands via wf8266r
     }
 
     ext.sendRapiro = function(msg) {
-        _serialBridge("/rapiro/send/"+msg);
+        _serialBridge("/rapiro/send/"+encodeURI(msg));
     }
 
     // Block and block menu descriptions
