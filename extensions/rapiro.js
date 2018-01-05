@@ -34,18 +34,14 @@ Send Raipro Commands via wf8266r
         });
     }
 
-    ext.sendRapiro_wifi = function(cmd,callback) {
-        _toRapiro(cmd);
-        window.setTimeout(function() {
-            callback();
-        }, 100);
+    ext.sendRapiro_wifi = function(cmd) {
+        _toRapiro_wifi(cmd);
+        _delayMs(100);
     }
 
-    ext.str2Rapiro_wifi = function(cmd,callback) {
+    ext.str2Rapiro_wifi = function(cmd) {
         _toRapiro_wifi(cmd);
-        window.setTimeout(function() {
-            callback();
-        }, 100);
+        _delayMs(100);
     }
 
     ext.setIP = function(_ip) {
@@ -70,7 +66,7 @@ Send Raipro Commands via wf8266r
  
     function _serialBridge (msg) {
         var server = 'http://127.0.0.1';
-        var uri = server+msg;
+        var uri = encodeURIComponent(server+msg);
         $.ajax({
             url: uri, 
             type: 'GET',
@@ -96,12 +92,12 @@ Send Raipro Commands via wf8266r
     }
 
     ext.sendRapiro_serial = function(msg) {
-        _serialBridge("/rapiro/send/"+encodeURIComponent(msg));
+        _serialBridge("/rapiro/send/"+msg);
         _delayMs(100);
     }
 
     ext.str2Rapiro_serial = function(msg) {
-        _serialBridge("/rapiro/send/"+encodeURIComponent(msg));
+        _serialBridge("/rapiro/send/"+msg);
         _delayMs(100);
     }
 
@@ -117,8 +113,8 @@ Send Raipro Commands via wf8266r
             [' ', 'Serial %m.rapiroCMD to Rapiro', 'sendRapiro_serial', '#M0'],  
             [' ', 'Serial %s to Rapiro', 'str2Rapiro_serial', '#PS00A000T010'],  
             [' ', 'Rapiro IP %s', 'setIP', '192.168.4.1'],  
-            ['w', 'Wifi %m.rapiroCMD to Raipro', 'sendRapiro_wifi', '#M0'],
-            ['w', 'Wifi %s to Raipro', 'str2Rapiro_wifi', '#PS00A000T010'],
+            [' ', 'Wifi %m.rapiroCMD to Raipro', 'sendRapiro_wifi', '#M0'],
+            [' ', 'Wifi %s to Raipro', 'str2Rapiro_wifi', '#PS00A000T010'],
         ],
         menus: {
             'restType': ['GET', 'POST'],
