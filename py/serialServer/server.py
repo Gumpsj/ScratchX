@@ -2,11 +2,9 @@
 import time
 import serial.tools.list_ports as port_list
 import serial
-import json
     
 #----------------------------------------------------
-from flask import Response
-from flask import Flask
+from flask import Flask, Response, jsonify
 app = Flask(__name__)
 
 #----------------------------------------------------
@@ -28,13 +26,10 @@ def hello():
 #----------------------------------------------------
 @app.route("/arduino", methods = ['GET'])
 def _get1stArduino():
-  #port=get1stArduino();
-  data={'port':'COM9'};
-  response = app.response_class(
-        response=json.dumps(data),
-        status=200,
-        mimetype='application/json');
-  return response
+  port=get1stArduino();
+  data={'port':port};  
+  return jsonify(data)
+
 #----------------------------------------------------
 @app.route("/cmd/M/<int:act>", methods = ['GET'])
 def _cmdM(act):
