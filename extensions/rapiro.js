@@ -73,6 +73,8 @@ Send Raipro Commands via wf8266r
         var uri = server+msg;
         $.ajax({
             url: uri, 
+            data:"",
+            dataType:'text',
             type: 'GET',
             success: function (data) {
                 restRet = data;
