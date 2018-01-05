@@ -91,7 +91,7 @@ Send Raipro Commands via wf8266r
  
     ext.connectRapiro_serial = function(callback) {
         _serialBridge("/rapiro/connect");
-        _delayMs(2000);
+        _delayMs(5000);
         callback();
     }
 
