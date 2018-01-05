@@ -87,7 +87,7 @@ Send Raipro Commands via wf8266r
  
     ext.connectRapiro_serial = function() {
         _serialBridge("/rapiro/connect");
-        _delayMs(1500);
+        _delayMs(2500);
     }
 
     ext.disconnectRapiro_serial = function() {
@@ -102,7 +102,7 @@ Send Raipro Commands via wf8266r
 
     ext.str2Rapiro_serial = function(msg) {
         _serialBridge("/rapiro/send/"+encodeURIComponent(msg));
-        _delayMs(200);
+        _delayMs(500);
     }
 
     _delayMs = function(t) {
