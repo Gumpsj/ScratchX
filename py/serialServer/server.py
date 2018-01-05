@@ -2,8 +2,10 @@
 import time
 import serial.tools.list_ports as port_list
 import serial
+import json
     
 #----------------------------------------------------
+from flask import Response
 from flask import Flask
 app = Flask(__name__)
 
@@ -26,10 +28,9 @@ def hello():
 #----------------------------------------------------
 @app.route("/arduino")
 def _get1stArduino():
+  data = {}
   port=get1stArduino()
-  if port: 
-    return port
-  return "No Arduino device found!"
+  return json.dumps({'success':True, 'port':port}), 200, {'ContentType':'application/json'} 
 
 #----------------------------------------------------
 @app.route("/cmd/M/<int:act>")
