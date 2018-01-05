@@ -100,7 +100,7 @@ Send Raipro Commands via wf8266r
         _delayMs(200);
     }
 
-    ext.ser2Rapiro_serial = function(msg) {
+    ext.str2Rapiro_serial = function(msg) {
         _serialBridge("/rapiro/send/"+encodeURIComponent(msg));
         _delayMs(200);
     }
