@@ -72,11 +72,9 @@ def _getRapiro():
 @app.route("/rapiro/send/<msg>", methods = ['GET'])
 def _sendRapiro(msg):
   global ser_rapiro
-  if ser_rapiro==None:
-    _connectRapiro()
-  if ser_rapiro:
+  if ser_rapiro!=None:
     ser_rapiro.write(msg.encode())
-    print(ser_rapiro.name," : ",msg)         
+    #print(ser_rapiro.name," : ",msg)         
     return "success"  
   return "error"
 
@@ -91,7 +89,7 @@ def _connectRapiro():
   p=getRapiro()
   if p:
     ser_rapiro = serial.Serial(p,9600)
-    ser_rapiro.write("#M0".encode())
+    #ser_rapiro.write("#M0".encode())
     if ser_rapiro:
       return "success"  
   return "error"

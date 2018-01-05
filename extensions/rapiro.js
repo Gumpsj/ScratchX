@@ -38,14 +38,16 @@ Send Raipro Commands via wf8266r
         window.setTimeout(function() {}, t);        
     }
 
-    ext.sendRapiro_wifi = function(cmd) {
+    ext.sendRapiro_wifi = function(cmd,callback) {
         _toRapiro_wifi(cmd);
-        _delayMs(1000);
+        _delayMs(100);
+        callback();
     }
 
-    ext.str2Rapiro_wifi = function(cmd) {
+    ext.str2Rapiro_wifi = function(cmd,callback) {
         _toRapiro_wifi(cmd);
-        _delayMs(1000);
+        _delayMs(100);
+        callback();
     }
 
     ext.setIP = function(_ip) {
@@ -87,36 +89,40 @@ Send Raipro Commands via wf8266r
         });
     }
  
-    ext.connectRapiro_serial = function() {
+    ext.connectRapiro_serial = function(callback) {
         _serialBridge("/rapiro/connect");
-        _delayMs(4000);
+        _delayMs(2000);
+        callback();
     }
 
-    ext.disconnectRapiro_serial = function() {
+    ext.disconnectRapiro_serial = function(callback) {
         _serialBridge("/rapiro/disconnect");
-        _delayMs(1000);
+        _delayMs(100);
+        callback();
     }
 
-    ext.sendRapiro_serial = function(msg) {
+    ext.sendRapiro_serial = function(msg,callback) {
         _serialBridge("/rapiro/send/"+encodeURIComponent(msg));
-        _delayMs(1000);
+        _delayMs(100);
+        callback();
     }
 
-    ext.str2Rapiro_serial = function(msg) {
+    ext.str2Rapiro_serial = function(msg,callback) {
         _serialBridge("/rapiro/send/"+encodeURIComponent(msg));
-        _delayMs(1000);
+        _delayMs(100);
+        callback();
     }
 
     // Block and block menu descriptions
     var descriptor = { 
         blocks: [
-            [' ', 'Hi! Rapiro', 'connectRapiro_serial'],
-            [' ', 'Bye~ Rapiro', 'disconnectRapiro_serial'],
-            [' ', 'Serial %m.rapiroCMD to Rapiro', 'sendRapiro_serial', '#M0'],  
-            [' ', 'Serial %s to Rapiro', 'str2Rapiro_serial', '#PS00A000T010'],  
+            ['w', 'Hi! Rapiro', 'connectRapiro_serial'],
+            ['w', 'Bye~ Rapiro', 'disconnectRapiro_serial'],
+            ['w', 'Serial %m.rapiroCMD to Rapiro', 'sendRapiro_serial', '#M0'],  
+            ['w', 'Serial %s to Rapiro', 'str2Rapiro_serial', '#PS00A000T010'],  
             [' ', 'Rapiro IP %s', 'setIP', '192.168.4.1'],  
-            [' ', 'Wifi %m.rapiroCMD to Raipro', 'sendRapiro_wifi', '#M0'],
-            [' ', 'Wifi %s to Raipro', 'str2Rapiro_wifi', '#PS00A000T010'],
+            ['w', 'Wifi %m.rapiroCMD to Raipro', 'sendRapiro_wifi', '#M0'],
+            ['w', 'Wifi %s to Raipro', 'str2Rapiro_wifi', '#PS00A000T010'],
         ],
         menus: {
             'restType': ['GET', 'POST'],
