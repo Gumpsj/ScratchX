@@ -34,6 +34,10 @@ Send Raipro Commands via wf8266r
         });
     }
 
+    _delayMs = function(t) {
+        window.setTimeout(function() {}, t);        
+    }
+
     ext.sendRapiro_wifi = function(cmd) {
         _toRapiro_wifi(cmd);
         _delayMs(1000);
@@ -49,7 +53,7 @@ Send Raipro Commands via wf8266r
     }
 
     function _toRapiro_wifi (msg) {
-        var seriver = 'http://'+ip;
+        var server = 'http://'+ip;
         var cmd = '/serial/write?text='+msg;
         var uri = encodeURIComponent(server+cmd);
         $.ajax({
@@ -99,10 +103,6 @@ Send Raipro Commands via wf8266r
     ext.str2Rapiro_serial = function(msg) {
         _serialBridge("/rapiro/send/"+msg);
         _delayMs(1000);
-    }
-
-    _delayMs = function(t) {
-        window.setTimeout(function() {}, t);        
     }
 
     // Block and block menu descriptions
