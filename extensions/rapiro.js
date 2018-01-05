@@ -68,13 +68,11 @@ Send Raipro Commands via wf8266r
         });
     }
  
-    function _toPyServer (msg) {
+    function _serialBridge (msg) {
         var server = 'http://127.0.0.1';
         var uri = server+msg;
         $.ajax({
             url: uri, 
-            data:"",
-            dataType:'text',
             type: 'GET',
             success: function (data) {
                 restRet = data;
@@ -87,16 +85,24 @@ Send Raipro Commands via wf8266r
         });
     }
  
-    ext.getArduino = function() {
-        _toPyServer('/arduino')
-        port=restRet;
-        return port;
+    ext.connectRapiro = function() {
+        _serialBridge("/raprio/connect");
+    }
+
+    ext.disconnectRapiro = function() {
+        _serialBridge("/raprio/disconnect");
+    }
+
+    ext.sendRapiro = function(msg) {
+        _serialBridge("/raprio/send/"+msg);
     }
 
     // Block and block menu descriptions
     var descriptor = { 
         blocks: [
-            ['r', 'Arduino device', 'getArduino'],
+            [' ', 'Hi! Rapiro', 'connectRapiro'],
+            [' ', 'Bye~ Rapiro', 'disconnectRapiro'],
+            [' ', 'Send %s to Rapiro', 'sendRapiro', '%23M0'],  
             [' ', 'Rapiro IP %s', 'setIP', '192.168.4.1'],  
             ['w', '#%m.rapiroCMD to Raipro', 'toRapiro', 'M0'],
             ['w', 'Send %s to Raipro', 'str2Rapiro', 'M0'],

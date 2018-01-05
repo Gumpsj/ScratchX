@@ -184,7 +184,7 @@ void setup()  {
     analogWrite(eyes[i], nowBright[i] >> SHIFT);
   }
   
-  Serial.begin(57600);
+  Serial.begin(9600);
   
   delay(500);
   
