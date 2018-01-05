@@ -73,11 +73,12 @@ Send Raipro Commands via wf8266r
             type: 'GET',
             success: function (data) {
                 restRet = data;
+                alert("Success : "+restRet);
             },
             error: function (e) {
                 restRet = JSON.stringify(e);
-                console.log(e);
-                alert(e);
+                console.log(restRet);
+                alert("Error : "+restRet);
             }
         });
     }
