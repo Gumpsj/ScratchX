@@ -50,8 +50,8 @@ Send Raipro Commands via wf8266r
 
     function _toRapiro_wifi (msg) {
         var seriver = 'http://'+ip;
-        var cmd = encodeURIComponent('/serial/write?text='+msg);
-        var uri = server+cmd;
+        var cmd = '/serial/write?text='+msg;
+        var uri = encodeURIComponent(server+cmd);
         $.ajax({
             url: uri,
             type: 'GET',
@@ -83,7 +83,7 @@ Send Raipro Commands via wf8266r
  
     ext.connectRapiro_serial = function() {
         _serialBridge("/rapiro/connect");
-        _delayMs(100);
+        _delayMs(2000);
     }
 
     ext.disconnectRapiro_serial = function() {
@@ -102,7 +102,7 @@ Send Raipro Commands via wf8266r
     }
 
     _delayMs = function(t) {
-        window.setTimeout(function() {}, 100);        
+        window.setTimeout(function() {}, t);        
     }
 
     // Block and block menu descriptions
