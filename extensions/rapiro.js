@@ -53,7 +53,7 @@ Send Raipro Commands via wf8266r
     }
 
     function _toRapiro (cmd) {
-        var uri = 'http://'+ip+'/serial/write?text='+cmd;
+        var uri = 'http://'+ip+'/serial/write?text='+cmd+' : '+port;
         $.ajax({
             url: uri,
             type: 'GET',
@@ -82,7 +82,7 @@ Send Raipro Commands via wf8266r
  
     ext.getArduino = function() {
         _toPyServer('/arduino')
-        return restRet;
+        port=restRet;
     }
 
     // Block and block menu descriptions
