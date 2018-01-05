@@ -26,14 +26,14 @@ def hello():
   return "Hello World!"
 
 #----------------------------------------------------
-@app.route("/arduino")
+@app.route("/arduino", methods = ['GET'])
 def _get1stArduino():
   data = {}
   port=get1stArduino()
   return json.dumps({'success':True, 'port':port}), 200, {'ContentType':'application/json'} 
 
 #----------------------------------------------------
-@app.route("/cmd/M/<int:act>")
+@app.route("/cmd/M/<int:act>", methods = ['GET'])
 def _cmdM(act):
   p=get1stArduino()
   if p:
@@ -47,7 +47,7 @@ def _cmdM(act):
   return "Failure"
 
 #----------------------------------------------------
-@app.route("/send/<msg>")
+@app.route("/send/<msg>", methods = ['GET'])
 def _send(msg):
   p=get1stArduino()
   if p:
@@ -60,7 +60,7 @@ def _send(msg):
   return "Failure"
 
 #----------------------------------------------------
-@app.route("/ports")
+@app.route("/ports", methods = ['GET'])
 def getports():
   ret=""
   for p in port_list.comports():
@@ -70,4 +70,4 @@ def getports():
 
 #----------------------------------------------------
 if __name__=='__main__':
-  app.run(host="0.0.0.0",port=5000)
+  app.run(host="0.0.0.0",port=5000,debug = True)
