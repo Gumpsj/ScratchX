@@ -86,15 +86,15 @@ Send Raipro Commands via wf8266r
     }
  
     ext.connectRapiro = function() {
-        _serialBridge("/raprio/connect");
+        _serialBridge("/rapiro/connect");
     }
 
     ext.disconnectRapiro = function() {
-        _serialBridge("/raprio/disconnect");
+        _serialBridge("/rapiro/disconnect");
     }
 
     ext.sendRapiro = function(msg) {
-        _serialBridge("/raprio/send/"+msg);
+        _serialBridge("/rapiro/send/"+msg);
     }
 
     // Block and block menu descriptions
