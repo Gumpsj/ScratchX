@@ -127,7 +127,7 @@ Send Raipro Commands via wf8266r
             [' ', 'Rapiro IP %s', 'setIP', '192.168.4.1'],  
             ['w', 'Wifi %m.rapiroCMD to Raipro', 'sendRapiro_wifi', '#M0'],
             ['w', 'Wifi %s to Raipro', 'str2Rapiro_wifi', '#PS00A000T010'],
-            ['w', '#PS%m.rapiroServo A%3n T%3n', 'cmdPS_wifi', 0,0,0],
+            ['w', '#PS%m.rapiroServo A%n T%n', 'cmdPS_wifi', 'S00', 0,0],
         ],
         menus: {
             'restType': ['GET', 'POST'],
