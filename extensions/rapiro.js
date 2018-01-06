@@ -65,7 +65,7 @@ Send Raipro Commands via wf8266r
         });
     }
  
-    ext.cmdPS_wifi = function(s,a,t) {
+    ext.cmdPS_wifi = function(s,a,t,callback) {
         var cmd="#P"+s;
         cmd+="A"+paddy(a,3);
         cmd+="T"+paddy(t,3);
@@ -117,7 +117,7 @@ Send Raipro Commands via wf8266r
         return (pad + n).slice(-pad.length);
     };
 
-    ext.cmdPS_serial = function(s,a,t) {
+    ext.cmdPS_serial = function(s,a,t,callback) {
         var cmd="#P"+s;
         cmd+="A"+paddy(a,3);
         cmd+="T"+paddy(t,3);
