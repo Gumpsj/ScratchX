@@ -75,6 +75,9 @@ Send Raipro Commands via wf8266r
 
     ext.cmdEyes_wifi = function(r,g,b,callback) {
         var cmd="#P";
+        r=(r>255)?255:(r<0)?0:r;
+        g=(g>255)?255:(g<0)?0:g;
+        b=(b>255)?255:(b<0)?0:b;
         cmd+="R"+paddy(r,3);
         cmd+="G"+paddy(g,3);
         cmd+="B"+paddy(b,3);
@@ -136,6 +139,9 @@ Send Raipro Commands via wf8266r
 
     ext.cmdEyes_serial = function(r,g,b,callback) {
         var cmd="#P";
+        r=(r>255)?255:(r<0)?0:r;
+        g=(g>255)?255:(g<0)?0:g;
+        b=(b>255)?255:(b<0)?0:b;
         cmd+="R"+paddy(r,3);
         cmd+="G"+paddy(g,3);
         cmd+="B"+paddy(b,3);
