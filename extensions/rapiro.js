@@ -65,6 +65,14 @@ Send Raipro Commands via wf8266r
         });
     }
  
+    ext.cmdPS_wifi = function(s,a,t) {
+        var cmd="#P"+s;
+        cmd+="A"+paddy(a,3);
+        cmd+="T"+paddy(t,3);
+        _toRapiro_wifi(cmd);
+        window.setTimeout(function() {callback();}, 200);
+    }
+
     function _serialBridge (msg) {
         var server = 'http://127.0.0.1';
         var uri = server+msg;
@@ -109,7 +117,7 @@ Send Raipro Commands via wf8266r
         return (pad + n).slice(-pad.length);
     };
 
-    ext.cmdPS_wifi = function(s,a,t) {
+    ext.cmdPS_serial = function(s,a,t) {
         var cmd="#P"+s;
         cmd+="A"+paddy(a,3);
         cmd+="T"+paddy(t,3);
@@ -120,14 +128,15 @@ Send Raipro Commands via wf8266r
     // Block and block menu descriptions
     var descriptor = { 
         blocks: [
-            ['w', 'Hi! Rapiro', 'connectRapiro_serial'],
-            ['w', 'Bye~ Rapiro', 'disconnectRapiro_serial'],
-            ['w', 'Serial %m.rapiroCMD to Rapiro', 'sendRapiro_serial', '#M0'],  
-            ['w', 'Serial %s to Rapiro', 'str2Rapiro_serial', '#PS00A000T010'],  
-            [' ', 'Rapiro IP %s', 'setIP', '192.168.4.1'],  
-            ['w', 'Wifi %m.rapiroCMD to Raipro', 'sendRapiro_wifi', '#M0'],
-            ['w', 'Wifi %s to Raipro', 'str2Rapiro_wifi', '#PS00A000T010'],
-            ['w', '#PS%m.rapiroServo A%n T%n', 'cmdPS_wifi', 'S00', 0,0],
+            ['w', 'Serial: Hi! Rapiro', 'connectRapiro_serial'],
+            ['w', 'Serial: Bye~ Rapiro', 'disconnectRapiro_serial'],
+            ['w', 'Serial: %m.rapiroCMD to Rapiro', 'sendRapiro_serial', '#M0'],  
+            ['w', 'Serial: %s to Rapiro', 'str2Rapiro_serial', '#PS00A000T010'],  
+            ['w', 'Serial: #PS%m.rapiroServo A%n T%n', 'cmdPS_serial', 'S00', 0,0],
+            [' ', 'Wifi: Rapiro IP %s', 'setIP', '192.168.4.1'],  
+            ['w', 'Wifi: %m.rapiroCMD to Raipro', 'sendRapiro_wifi', '#M0'],
+            ['w', 'Wifi: %s to Raipro', 'str2Rapiro_wifi', '#PS00A000T010'],
+            ['w', 'Wifi: #PS%m.rapiroServo A%n T%n', 'cmdPS_wifi', 'S00', 0,0],
         ],
         menus: {
             'restType': ['GET', 'POST'],
