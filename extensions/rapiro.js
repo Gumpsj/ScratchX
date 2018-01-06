@@ -67,6 +67,12 @@ Send Raipro Commands via wf8266r
  
     ext.cmdPS_wifi = function(s,a,t,callback) {
         var cmd="#P"+s;
+        swith(s) {
+            case "S03": a=(a>130)?130:(a<40)?40:a; break;
+            case "S04": a=(a>110)?110:(a<50)?40:a; break;
+            case "S06": a=(a>90)?90:(a<0)?0:a; break;
+            case "S07": a=(a>130)?130:(a<70)?70:a; break;
+        }
         cmd+="A"+paddy(a,3);
         cmd+="T"+paddy(t,3);
         _toRapiro_wifi(cmd);
@@ -131,6 +137,12 @@ Send Raipro Commands via wf8266r
 
     ext.cmdPS_serial = function(s,a,t,callback) {
         var cmd="#P"+s;
+        swith(s) {
+            case "S03": a=(a>130)?130:(a<40)?40:a; break;
+            case "S04": a=(a>110)?110:(a<50)?40:a; break;
+            case "S06": a=(a>90)?90:(a<0)?0:a; break;
+            case "S07": a=(a>130)?130:(a<70)?70:a; break;
+        }
         cmd+="A"+paddy(a,3);
         cmd+="T"+paddy(t,3);
         _serialBridge("/rapiro/send/"+encodeURIComponent(cmd));
