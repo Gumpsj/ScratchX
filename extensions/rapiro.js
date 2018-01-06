@@ -110,9 +110,9 @@ Send Raipro Commands via wf8266r
     };
 
     ext.cmdPS_wifi = function(s,a,t) {
-        var cmd="#PS"+paddy(s,2);
-        cmd+=paddy(a,3);
-        cmd+=paddy(t,3);
+        var cmd="#P"+s;
+        cmd+="A"+paddy(a,3);
+        cmd+="T"+paddy(t,3);
         _serialBridge("/rapiro/send/"+encodeURIComponent(cmd));
         window.setTimeout(function() {callback();}, 200);
     }
@@ -127,12 +127,12 @@ Send Raipro Commands via wf8266r
             [' ', 'Rapiro IP %s', 'setIP', '192.168.4.1'],  
             ['w', 'Wifi %m.rapiroCMD to Raipro', 'sendRapiro_wifi', '#M0'],
             ['w', 'Wifi %s to Raipro', 'str2Rapiro_wifi', '#PS00A000T010'],
-            ['w', '#PS%m.rapiroServo A%n T%n', 'cmdPS_wifi', 0,0,0],
+            ['w', '#PS%m.rapiroServo A%3n T%3n', 'cmdPS_wifi', 0,0,0],
         ],
         menus: {
             'restType': ['GET', 'POST'],
             'rapiroCMD': ['#M0','#M1','#M2','#M3','#M4','#M5','#M6','#M7','#M8','#M9'],
-            'rapiroServo': [0,1,2,3,4,5,6,7,8,9,10,11],
+            'rapiroServo': ['S00','S01','S02','S03','S04','S05','S06','S07','S08','S09','S10','S11'],
         },
         url: 'http://jy3736.github.io/ScratchX/extensions/'
     };
