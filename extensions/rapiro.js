@@ -74,6 +74,7 @@ Send Raipro Commands via wf8266r
             case "S07": a=(a>130)?130:(a<70)?70:a; break;
             default   : a=(a>180)?180:(a<0)?0:a; 
         }
+        t=(t>255)?255:(t<0)?0:t;
         cmd+="A"+paddy(a,3);
         cmd+="T"+paddy(t,3);
         _toRapiro_wifi(cmd);
@@ -147,6 +148,7 @@ Send Raipro Commands via wf8266r
             case "S07": a=(a>130)?130:(a<70)?70:a; break;
             default   : a=(a>180)?180:(a<0)?0:a; 
         }
+        t=(t>255)?255:(t<0)?0:t;
         cmd+="A"+paddy(a,3);
         cmd+="T"+paddy(t,3);
         _serialBridge("/rapiro/send/"+encodeURIComponent(cmd));
