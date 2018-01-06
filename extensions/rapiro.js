@@ -72,6 +72,7 @@ Send Raipro Commands via wf8266r
             case "S04": a=(a>110)?110:(a<50)?40:a; break;
             case "S06": a=(a>90)?90:(a<0)?0:a; break;
             case "S07": a=(a>130)?130:(a<70)?70:a; break;
+            default   : a=(a>180)?180:(a<0)?0:a; 
         }
         cmd+="A"+paddy(a,3);
         cmd+="T"+paddy(t,3);
@@ -79,14 +80,16 @@ Send Raipro Commands via wf8266r
         window.setTimeout(function() {callback();}, 200);
     }
 
-    ext.cmdEyes_wifi = function(r,g,b,callback) {
+    ext.cmdEyes_wifi = function(r,g,b,t,callback) {
         var cmd="#P";
         r=(r>255)?255:(r<0)?0:r;
         g=(g>255)?255:(g<0)?0:g;
         b=(b>255)?255:(b<0)?0:b;
+        t=(t>255)?255:(t<0)?0:t;
         cmd+="R"+paddy(r,3);
         cmd+="G"+paddy(g,3);
         cmd+="B"+paddy(b,3);
+        cmd+="T"+paddy(t,3);
         _toRapiro_wifi(cmd);
         window.setTimeout(function() {callback();}, 100);
     }
@@ -142,6 +145,7 @@ Send Raipro Commands via wf8266r
             case "S04": a=(a>110)?110:(a<50)?40:a; break;
             case "S06": a=(a>90)?90:(a<0)?0:a; break;
             case "S07": a=(a>130)?130:(a<70)?70:a; break;
+            default   : a=(a>180)?180:(a<0)?0:a; 
         }
         cmd+="A"+paddy(a,3);
         cmd+="T"+paddy(t,3);
@@ -149,14 +153,16 @@ Send Raipro Commands via wf8266r
         window.setTimeout(function() {callback();}, 100);
     }
 
-    ext.cmdEyes_serial = function(r,g,b,callback) {
+    ext.cmdEyes_serial = function(r,g,b,t,callback) {
         var cmd="#P";
         r=(r>255)?255:(r<0)?0:r;
         g=(g>255)?255:(g<0)?0:g;
         b=(b>255)?255:(b<0)?0:b;
+        t=(t>255)?255:(t<0)?0:t;
         cmd+="R"+paddy(r,3);
         cmd+="G"+paddy(g,3);
         cmd+="B"+paddy(b,3);
+        cmd+="T"+paddy(t,3);
         _serialBridge("/rapiro/send/"+encodeURIComponent(cmd));
         window.setTimeout(function() {callback();}, 100);
     }
@@ -169,12 +175,12 @@ Send Raipro Commands via wf8266r
             ['w', 'Serial: %m.rapiroCMD to Rapiro', 'sendRapiro_serial', '#M0'],  
             ['w', 'Serial: %s to Rapiro', 'str2Rapiro_serial', '#PS00A090T010'],  
             ['w', 'Serial: #PS%m.rapiroServo A%n T%n', 'cmdPS_serial', 'S00', 90,10],
-            ['w', 'Serial: #PR%n G%n B%n', 'cmdEyes_serial', 0,255,0],
+            ['w', 'Serial: #PR%n G%n B%n T%n', 'cmdEyes_serial', 0,255,0,10],
             [' ', 'Wifi: Rapiro IP %s', 'setIP', '192.168.4.1'],  
             ['w', 'Wifi: %m.rapiroCMD to Raipro', 'sendRapiro_wifi', '#M0'],
             ['w', 'Wifi: %s to Raipro', 'str2Rapiro_wifi', '#PS00A090T010'],
             ['w', 'Wifi: #PS%m.rapiroServo A%n T%n', 'cmdPS_wifi', 'S00', 90,10],
-            ['w', 'Wifi: #PR%n G%n B%n', 'cmdEyes_wifi', 0,255,0],
+            ['w', 'Wifi: #PR%n G%n B%n T%n', 'cmdEyes_wifi', 0,255,0,10],
         ],
         menus: {
             'restType': ['GET', 'POST'],
