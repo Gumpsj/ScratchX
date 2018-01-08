@@ -19,18 +19,18 @@ Servo servo[MAXSN];
 uint8_t eyes[3] = { 0, 0, 0};
 
 // Fine angle adjustments (degrees)
-int trim[MAXSN] = { 0,  // Head yaw
+int trim[MAXSN] = { 5,  // Head yaw
                     0,  // Waist yaw
                     0,  // R Sholder roll
                     0,  // R Sholder pitch
                     0,  // R Hand grip
-                    0,  // L Sholder roll
-                    0,  // L Sholder pitch
+                    -20,  // L Sholder roll
+                    -15,  // L Sholder pitch
                     0,  // L Hand grip
-                    0,  // R Foot yaw
+                    -10,  // R Foot yaw
                     0,  // R Foot pitch
-                    0,  // L Foot yaw
-                    0}; // L Foot pitch
+                    -15,  // L Foot yaw
+                    -15}; // L Foot pitch
 
 int nowAngle[MAXSN] =        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};  // Initialize array to 0
 int targetAngle[MAXSN] =     { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};  // Initialize array to 0
