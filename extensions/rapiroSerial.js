@@ -5,8 +5,8 @@ Send Raipro Commands via wf8266r
 (function (ext) {
 
     var restRet = "";
-    var ip="";
-    var port="";
+    var server = 'http://127.0.0.1:5000';
+    var connected = false;
 
     var cmdM = {
         "歸位":"#M0",
@@ -42,7 +42,10 @@ Send Raipro Commands via wf8266r
     // Status reporting code
     // Use this to report missing hardware, plugin or unsupported browser
     ext._getStatus = function () {
-        return {status: 2, msg: 'Ready'};
+        if (connected)
+            return {status: 2, msg: 'Connected'};
+        else
+            return {status: 1, msg: 'Disconnected'};
     }
 
     function _serialBridge (msg) {
@@ -65,11 +68,13 @@ Send Raipro Commands via wf8266r
  
     ext.connectRapiro_serial = function(callback) {
         _serialBridge("/rapiro/connect");
+        connected=true;
         window.setTimeout(function() {callback();}, 2000);
     }
 
     ext.disconnectRapiro_serial = function(callback) {
         _serialBridge("/rapiro/disconnect");
+        connected=false;
         window.setTimeout(function() {callback();}, 200);
     }
 
