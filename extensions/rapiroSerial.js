@@ -74,12 +74,12 @@ Send Raipro Commands via wf8266r
     }
 
     ext.sendRapiro_serial = function(msg,callback) {
-        _serialBridge("/rapiro/send/"+encodeURIComponent(msg));
+        _serialBridge("/rapiro/send/"+encodeURIComponent(cmdM[msg]));
         window.setTimeout(function() {callback();}, 200);
     }
 
     ext.str2Rapiro_serial = function(msg,callback) {
-        _serialBridge("/rapiro/send/"+encodeURIComponent(cmdM[msg]));
+        _serialBridge("/rapiro/send/"+encodeURIComponent(msg));
         window.setTimeout(function() {callback();}, 200);
     }
 
