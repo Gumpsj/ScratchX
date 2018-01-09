@@ -66,6 +66,7 @@ Send Raipro Commands via wf8266r
     function _toRapiro_wifi (msg) {
         var cmd = '/serial/write?text='+encodeURIComponent(msg);
         var uri = server+cmd;
+        console.log(uri);
         //alert(uri);
         $.ajax({
             url: uri,
