@@ -61,13 +61,12 @@ Send Raipro Commands via wf8266r
     ext.setServer = function(_ip) {
         server="http://"+_ip;
         _toRapiro_wifi("#M0");
+        window.setTimeout(function() {callback();}, 200);    
     }
 
     function _toRapiro_wifi (msg) {
         var cmd = '/serial/write?text='+encodeURIComponent(msg);
         var uri = server+cmd;
-        console.log(uri);
-        //alert(uri);
         $.ajax({
             url: uri,
             type: 'GET',
@@ -78,7 +77,6 @@ Send Raipro Commands via wf8266r
             error: function (e) {
                 connected = false;
                 restRet = JSON.stringify(e);
-                alert("Error : "+restRet);
             }
         });
     }
