@@ -5,7 +5,7 @@ Send Raipro Commands via wf8266r
 (function (ext) {
 
     var restRet = "";
-    var server="http://192.168.2.101";
+    var server="";
     var connected = false;
 
     var cmdM = {
@@ -121,7 +121,7 @@ Send Raipro Commands via wf8266r
     // Block and block menu descriptions
     var descriptor = { 
         blocks: [
-            [' ', 'Rapiro 伺服器 %s', 'setServer', 'http://192.168.2.109'],  
+            [' ', 'Rapiro 伺服器 %s', 'setServer', '192.168.2.109'],  
             ['w', '動作 %m.rapiroCMDx', 'sendRapiro_wifi', '歸位'],
             ['w', '姿勢 %m.rapiroServox 角度 %n 歷時 %n', 'cmdPS_wifi', '頭', 90,10],
             ['w', '眼睛 紅 %n 綠 %n 藍 %n 歷時 %n', 'cmdEyes_wifi', 0,255,0,10],
