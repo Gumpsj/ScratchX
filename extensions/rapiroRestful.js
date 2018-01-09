@@ -5,8 +5,8 @@ Send Raipro Commands via wf8266r
 (function (ext) {
 
     var restRet = "";
-    var ip="";
-    var port="";
+    var server="http://192.168.2.101";
+    var connected = false;
 
     var cmdM = {
         "歸位":"#M0",
@@ -42,7 +42,10 @@ Send Raipro Commands via wf8266r
     // Status reporting code
     // Use this to report missing hardware, plugin or unsupported browser
     ext._getStatus = function () {
-        return {status: 2, msg: 'Ready'};
+        if (connected)
+            return {status: 2, msg: 'Connected'};
+        else
+            return {status: 1, msg: 'Disconnected'};
     }
 
     ext.sendRapiro_wifi = function(cmd,callback) {
@@ -55,12 +58,12 @@ Send Raipro Commands via wf8266r
         window.setTimeout(function() {callback();}, 200);
     }
 
-    ext.setIP = function(_ip) {
-        ip=_ip;
+    ext.setServer = function(_ip) {
+        server="http://"+_ip;
+        connected = _toRapiro_wifi("/user/get");
     }
 
     function _toRapiro_wifi (msg) {
-        var server = 'http://'+ip;
         var cmd = '/serial/write?text='+encodeURIComponent(msg);
         var uri = server+cmd;
         //alert(uri);
@@ -69,9 +72,11 @@ Send Raipro Commands via wf8266r
             type: 'GET',
             success: function (data) {
                 restRet = data;
+                return true;
             },
             error: function (e) {
                 restRet = JSON.stringify(e);
+                return false;
             }
         });
     }
@@ -116,7 +121,7 @@ Send Raipro Commands via wf8266r
     // Block and block menu descriptions
     var descriptor = { 
         blocks: [
-            [' ', '設定 IP %s', 'setIP', '192.168.2.101'],  
+            [' ', 'Rapiro 伺服器 %s', 'setServer', 'http://192.168.2.109'],  
             ['w', '動作 %m.rapiroCMDx', 'sendRapiro_wifi', '歸位'],
             ['w', '姿勢 %m.rapiroServox 角度 %n 歷時 %n', 'cmdPS_wifi', '頭', 90,10],
             ['w', '眼睛 紅 %n 綠 %n 藍 %n 歷時 %n', 'cmdEyes_wifi', 0,255,0,10],
