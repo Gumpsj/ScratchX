@@ -45,7 +45,7 @@ Send Raipro Commands via wf8266r
         if (connected)
             return {status: 2, msg: 'Connected'};
         else
-            return {status: 1, msg: 'Disconnected'};
+            return {status: 0, msg: 'Disconnected'};
     }
 
     function _serialBridge (msg) {
