@@ -60,7 +60,7 @@ Send Raipro Commands via wf8266r
 
     ext.setServer = function(_ip) {
         server="http://"+_ip;
-        connected = _toRapiro_wifi("/user/get");
+        connected = _toRapiro_wifi("#M0");
     }
 
     function _toRapiro_wifi (msg) {
