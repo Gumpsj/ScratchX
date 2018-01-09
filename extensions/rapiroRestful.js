@@ -130,7 +130,7 @@ Send Raipro Commands via wf8266r
                            "晃動雙臂變藍眼","揮左手變紅眼","舉右手轉身變藍眼"],
             "rapiroServox": ["頭","腰","右肩","右臂","右手掌","左肩","左臂","左手掌",
                              "右腳踝","右腳掌","左腳踝","左腳掌"],
-},
+        },
         url: 'http://jy3736.github.io/ScratchX/extensions/'
     };
 
