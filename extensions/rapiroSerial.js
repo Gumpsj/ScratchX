@@ -123,7 +123,8 @@ Send Raipro Commands via wf8266r
     // Block and block menu descriptions
     var descriptor = { 
         blocks: [
-            [' ', '設定 IP %s', 'setIP', '192.168.2.101'],  
+            ['w', '哈囉! Rapiro', 'connectRapiro_serial'],
+            ['w', '拜~ Rapiro', 'disconnectRapiro_serial'],
             ['w', '動作 %m.rapiroCMDx', 'sendRapiro_serial', '歸位'],
             ['w', '姿勢 %m.rapiroServox 角度 %n 歷時 %n', 'cmdPS_serial', '頭', 90,10],
             ['w', '眼睛 紅 %n 綠 %n 藍 %n 歷時 %n', 'cmdEyes_serial', 0,255,0,10],
