@@ -49,7 +49,6 @@ Send Raipro Commands via wf8266r
     }
 
     function _serialBridge (msg) {
-        var server = 'http://127.0.0.1';
         var uri = server+msg;
         //alert(uri);
         $.ajax({
