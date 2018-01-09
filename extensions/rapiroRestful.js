@@ -48,25 +48,26 @@ Send Raipro Commands via wf8266r
             return {status: 1, msg: 'Disconnected'};
     }
 
-    ext.sendRapiro_wifi = function(cmd,callback) {
-        _toRapiro_wifi(cmdM[cmd]);
+    ext.sendRapiro_wifi = function(msg,callback) {
+        var cmd = '/serial/write?text='+encodeURIComponent(cmdM[msg]);
+        _toRapiro_wifi(cmd);
         window.setTimeout(function() {callback();}, 200);
     }
 
-    ext.str2Rapiro_wifi = function(cmd,callback) {
+    ext.str2Rapiro_wifi = function(msg,callback) {
+        var cmd = '/serial/write?text='+encodeURIComponent(msg);
         _toRapiro_wifi(cmd);
         window.setTimeout(function() {callback();}, 200);
     }
 
     ext.setServer = function(_ip, callback) {
         server="http://"+_ip;
-        _toRapiro_wifi("#M0");
+        _toRapiro_wifi("/mac");
         callback();
     }
 
     function _toRapiro_wifi (msg) {
-        var cmd = '/serial/write?text='+encodeURIComponent(msg);
-        var uri = server+cmd;
+        var uri = server+msg;
         $.ajax({
             url: uri,
             type: 'GET',
@@ -94,6 +95,7 @@ Send Raipro Commands via wf8266r
         t=(t>255)?255:(t<0)?0:t;
         cmd+="A"+paddy(a,3);
         cmd+="T"+paddy(t,3);
+        cmd = '/serial/write?text='+encodeURIComponent(cmd);
         _toRapiro_wifi(cmd);
         window.setTimeout(function() {callback();}, 200);
     }
@@ -108,6 +110,7 @@ Send Raipro Commands via wf8266r
         cmd+="G"+paddy(g,3);
         cmd+="B"+paddy(b,3);
         cmd+="T"+paddy(t,3);
+        cmd = '/serial/write?text='+encodeURIComponent(cmd);
         _toRapiro_wifi(cmd);
         window.setTimeout(function() {callback();}, 100);
     }
