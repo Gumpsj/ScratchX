@@ -35,4 +35,4 @@
   };
 
   ScratchExtensions.register('Speech To Text', descriptor, ext);
-})();
+})({});
