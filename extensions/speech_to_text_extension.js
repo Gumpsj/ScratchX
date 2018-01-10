@@ -1,8 +1,7 @@
 /* Extension using the JavaScript Speech API for speech to text */
 /* Sayamindu Dasgupta <sayamindu@media.mit.edu>, April 2014 */
 
-new (function() {
-  var ext = this;
+(function(ext) {
   
   var recognized_speech = '';
 
