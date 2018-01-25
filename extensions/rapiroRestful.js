@@ -12,8 +12,8 @@ Send Raipro Commands via wf8266r
         "歸位":"#M0",
         "前進":"#M1",
         "後退":"#M2",
-        "轉右":"#M3",
-        "轉左":"#M4",
+        "轉右":"#M4",
+        "轉左":"#M3",
         "揮雙手閃綠眼":"#M5",
         "揮右手變黃眼":"#M6",
         "晃動雙臂變藍眼":"#M7",
@@ -124,7 +124,7 @@ Send Raipro Commands via wf8266r
     // Block and block menu descriptions
     var descriptor = { 
         blocks: [
-            ['w', 'Rapiro 伺服器 %s', 'setServer', '192.168.2.109'],  
+            ['w', 'Rapiro 伺服器 %s', 'setServer', '192.168.4.1'],  
             ['w', '動作 %m.rapiroCMDx', 'sendRapiro_wifi', '歸位'],
             ['w', '姿勢 %m.rapiroServox 角度 %n 歷時 %n', 'cmdPS_wifi', '頭', 90,10],
             ['w', '眼睛 紅 %n 綠 %n 藍 %n 歷時 %n', 'cmdEyes_wifi', 0,255,0,10],
